@@ -1,0 +1,6 @@
+.cms-audit-match {
+  outline: 3px solid #ff9800 !important;
+  background-color: #ffeb3b !important;
+  color: #000 !important;
+  font-weight: bold !important;
+}

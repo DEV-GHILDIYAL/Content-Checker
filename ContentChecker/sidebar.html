@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>CMS Content Audit</title>
+  <link rel="stylesheet" href="sidebar.css">
+</head>
+
+<body>
+  <div class="sidebar-container">
+    <header>
+      <h2>CMS Content Audit</h2>
+      <div class="tabs">
+        <button id="tab-normal" class="tab-btn active">Normal Page</button>
+        <button id="tab-crawl" class="tab-btn">Crawl URL</button>
+      </div>
+      <p id="mode-desc" class="subtitle">Auditing the currently open active webpage.</p>
+    </header>
+
+    <div id="url-section" class="input-group" style="display: none;">
+      <label for="crawl-url">Target URL to Crawl:</label>
+      <input type="url" id="crawl-url" placeholder="https://example.com/page" class="text-input">
+
+      <div class="delay-wrapper">
+        <label for="crawl-delay">Scan Delay (<span id="delay-value">1.5</span>s):</label>
+        <input type="range" id="crawl-delay" min="0" max="10" step="0.5" value="1.5" class="slider">
+      </div>
+
+      <button id="btn-add-queue" class="secondary-btn" style="margin-top: 10px;">Add to Queue</button>
+    </div>
+
+    <div class="upload-section">
+      <div id="drop-zone" class="drop-zone">
+        <p>Drop your content doc here</p>
+        <p>or</p>
+        <button id="btn-upload" class="primary-btn">Browse File</button>
+        <input type="file" id="file-upload" accept=".txt,.docx" style="display: none;">
+      </div>
+      <ul id="file-list" class="file-list"></ul>
+    </div>
+
+    <div class="actions-section">
+      <button id="btn-run-audit" class="success-btn" disabled>Run Audit</button>
+      <button id="btn-stop-audit" class="danger-btn" style="display: none;">Stop Audit</button>
+      <button id="btn-clear" class="secondary-btn">Clear</button>
+    </div>
+
+    <div id="queue-section" class="queue-section" style="display: none; margin-top: 15px;">
+      <h3 style="font-size: 14px; margin-bottom: 8px; border-bottom: 1px solid #e5e7eb; padding-bottom: 4px;">Task Queue
+        (<span id="queue-count">0</span>)</h3>
+      <ul id="queue-list" class="file-list"></ul>
+    </div>
+
+    <div id="stats-container" class="stats-container" style="display: none;">
+      <h3 id="percent-text"></h3>
+      <div id="stats-detail" class="stats-detail"></div>
+    </div>
+
+    <div id="missing-list" class="missing-list">
+      <!-- Missing lines injected here -->
+    </div>
+  </div>
+
+  <script src="mammoth.browser.min.js"></script>
+  <script src="sidebar.js"></script>
+</body>
+
+</html>

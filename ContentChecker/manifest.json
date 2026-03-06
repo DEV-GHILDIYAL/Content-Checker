@@ -1,0 +1,40 @@
+{
+  "manifest_version": 3,
+  "name": "CMS Content Audit",
+  "version": "1.0",
+  "description": "Audits whether website content matches a provided content document.",
+  "permissions": [
+    "activeTab",
+    "scripting",
+    "storage",
+    "sidePanel",
+    "tabs"
+  ],
+  "action": {
+    "default_title": "Open CMS Content Audit"
+  },
+  "side_panel": {
+    "default_path": "sidebar.html"
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "<all_urls>",
+        "file://*/*"
+      ],
+      "css": [
+        "contentScript.css"
+      ],
+      "js": [
+        "contentScript.js"
+      ]
+    }
+  ],
+  "icons": {
+    "48": "icon.png",
+    "128": "icon.png"
+  }
+}
