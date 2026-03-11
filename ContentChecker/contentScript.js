@@ -81,14 +81,26 @@ function runDOMScan(linesToMatch) {
         linesToMatch.forEach((targetLine, index) => {
             // Strict exact match logic within the text node
             // We search for the exact string targetLine in textContent
-            const matchIndex = textContent.indexOf(targetLine);
+            let matchIndex = textContent.indexOf(targetLine);
+            let matchLength = targetLine.length;
+
+            if (matchIndex === -1) {
+                // If it fails, check if an ALL CAPS version of the target line is present
+                const upperTargetLine = targetLine.toUpperCase();
+                if (upperTargetLine !== targetLine) {
+                    matchIndex = textContent.indexOf(upperTargetLine);
+                    if (matchIndex !== -1) {
+                        matchLength = upperTargetLine.length;
+                    }
+                }
+            }
 
             if (matchIndex !== -1) {
                 matchedLines.add(index); // Mark this line as matched based on its index
                 nodesToWrap.push({
                     node: currentNode,
                     start: matchIndex,
-                    length: targetLine.length
+                    length: matchLength
                 });
             }
         });
